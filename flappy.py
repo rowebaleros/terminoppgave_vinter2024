@@ -23,43 +23,43 @@ clock = pygame.time.Clock()
 FPS = 30
 
 # Fuglen
-bird_position = [100, SCREEN_HEIGHT // 2]
-bird_size = 20
+bird_position = [100, SCREEN_HEIGHT // 2] #plassering av fuglen på skjermen
+bird_size = 20 # fuglens størrelse
 bird_velocity = 0
-gravity = 1
-jump_force = -15
+gravity = 1 # hvor hard gravitasjonen får fuglen til å falle
+jump_force = -15 # hvor høyt/hardt fuglen hopper per klikk
 
 # Rør
 pipe_width = 60
 pipe_gap = 150
 pipe_speed = 3
-pipes = [{"x": SCREEN_WIDTH + x * 200, "height": random.randint(100, SCREEN_HEIGHT - pipe_gap - 100)} for x in range(3)]
+pipes = [{"x": SCREEN_WIDTH + x * 200, "height": random.randint(100, SCREEN_HEIGHT - pipe_gap - 100)} for x in range(3)] # hvor mange rør det vil komme i tilfeldige høyder
 
 # Poeng
 score = 0
 
 # Oppsett av database
 def setup_database(): # lager databasen og tabellen hvis de ikke finnes.
-    conn = sqlite3.connect("highscore.db")  # Kobler til databasen
-    cursor = conn.cursor()
+    conn = sqlite3.connect("highscore.db") # kobler til SQLite-databasen (eller opprett den hvis den ikke finnes)
+    cursor = conn.cursor() # lager en cursor for å utføre SQL-kommandoer
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS highscore (
             id INTEGER PRIMARY KEY,
             score INTEGER
         )
-    """)
-    conn.commit()
-    conn.close()
+    """) # lager en tabell hvis ikke du har en allerede
+    conn.commit() # lagrer endringer i databasen
+    conn.close() # Lukk tilkoblingen til databasen
 
 def read_highscore(): #Henter highscore fra databasen
-    conn = sqlite3.connect("highscore.db")
-    cursor = conn.cursor()
+    conn = sqlite3.connect("highscore.db") # Åpner tilkobling til databasen
+    cursor = conn.cursor() # Oppretter en cursor
     cursor.execute("SELECT MAX(score) FROM highscore")
-    result = cursor.fetchone()
-    conn.close()
+    result = cursor.fetchone() # Henter første rad (resultatet)
+    conn.close() # lukker tilkoblingen
     if result[0] is None:
-        return 0  # Returner 0 hvis ingen score er lagret
-    return result[0]
+        return 0  # returner 0 hvis ingen score er lagret
+    return result[0] # returnerer den høyeste scoren som ble funnet
 
 def save_highscore(new_highscore): # Lagrer ny highscore hvis den er høyere enn eksisterende.
     conn = sqlite3.connect("highscore.db")
