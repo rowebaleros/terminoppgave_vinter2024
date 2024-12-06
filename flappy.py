@@ -10,8 +10,8 @@ pygame.init()
 # Skjerminnstillinger
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 700
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Simplified Flappy Bird")
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # Oppretter spillvinduet med spesifiserte dimensjoner
+pygame.display.set_caption("Simplified Flappy Bird")  # Setter tittelen på vindue
 
 # Farger
 SKY_BLUE = (135, 206, 235)
