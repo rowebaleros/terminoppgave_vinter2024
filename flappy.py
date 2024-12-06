@@ -73,11 +73,11 @@ def save_highscore(new_highscore): # Lagrer ny highscore hvis den er høyere enn
 
 # Funksjon for å vise poeng og highscore
 def display_score_and_highscore(): # Viser spillerens poeng og den lagrede highscoren.
-    font = pygame.font.Font(None, 40)
+    font = pygame.font.Font(None, 40) # gir teksten en font med størrelse 40
     score_text = font.render(f"Score: {score}", True, (255, 255, 255))
     highscore_text = font.render(f"Highscore: {read_highscore()}", True, (255, 255, 255))
-    screen.blit(score_text, (10, 10))
-    screen.blit(highscore_text, (10, 50))
+    screen.blit(score_text, (10, 10)) # viser poeng på skjermen
+    screen.blit(highscore_text, (10, 50)) # viser highscore på skjermen
 
 # Hovedspillfunksjon
 def game():
