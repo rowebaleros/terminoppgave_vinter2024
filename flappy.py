@@ -8,8 +8,8 @@ import os # Importerer os-biblioteket for systemoperasjoner (filhåndtering)
 pygame.init()
 
 # Skjerminnstillinger
-SCREEN_WIDTH = 600
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # Oppretter spillvinduet med spesifiserte dimensjoner
 pygame.display.set_caption("Simplified Flappy Bird")  # Setter tittelen på vindue
 
