@@ -27,7 +27,7 @@ bird_position = [100, SCREEN_HEIGHT // 2] #plassering av fuglen på skjermen
 bird_size = 20 # fuglens størrelse
 bird_velocity = 0
 gravity = 1 # hvor hard gravitasjonen får fuglen til å falle
-jump_force = -15 # hvor høyt/hardt fuglen hopper per klikk
+jump_force = -10 # hvor høyt/hardt fuglen hopper per klikk
 
 # Rør
 pipe_width = 60
