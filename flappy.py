@@ -38,10 +38,10 @@ pipes = [{"x": SCREEN_WIDTH + x * 200, "height": random.randint(100, SCREEN_HEIG
 # Poeng
 score = 0
 
-# Oppsett av database
+# Databasen
 def setup_database(): # lager databasen og tabellen hvis de ikke finnes.
-    conn = sqlite3.connect("highscore.db") # kobler til SQLite-databasen (eller opprett den hvis den ikke finnes)
-    cursor = conn.cursor() # lager en cursor for å utføre SQL-kommandoer
+    conn = sqlite3.connect("highscore.db") # kobler til SQLite-databasen (eller lager en hvis det ikke finnes en fra før)
+    cursor = conn.cursor() # lager en cursor for å kjøre kommandoer på sql
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS highscore (
             id INTEGER PRIMARY KEY,
@@ -63,9 +63,9 @@ def read_highscore(): #Henter highscore fra databasen
 
 def save_highscore(new_highscore):  # Funksjonen lagrer en ny highscore hvis den er høyere enn eksisterende highscore.
     conn = sqlite3.connect("highscore.db")  # Oppretter eller åpner en tilkobling til databasen "highscore.db".
-    # Hvis databasen ikke finnes, opprettes den automatisk.
-    cursor = conn.cursor()  # Oppretter en cursor, som er et objekt som lar oss utføre SQL-spørringer mot databasen.
-    cursor.execute("SELECT MAX(score) FROM highscore")  # Utfører en SQL-spørring for å hente den høyeste verdien 
+    # Hvis databasen ikke finnes, lager den en automatisk.
+    cursor = conn.cursor()  # lager en cursor, som er et objekt som lar oss kjøre SQL-spørringer mot databasen.
+    cursor.execute("SELECT MAX(score) FROM highscore")  # kjører en SQL-spørring for å hente den høyeste verdien 
     # (MAX) i kolonnen "score" fra tabellen "highscore".
     current_highscore = cursor.fetchone()[0]  # Henter resultatet fra spørringen som en tuple, og tar den første (og eneste) verdien.
     # Hvis tabellen er tom (ingen rader), returnerer spørringen None.
