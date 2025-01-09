@@ -80,12 +80,9 @@ def save_highscore(new_highscore):  # Funksjonen lagrer en ny highscore hvis den
 # Funksjon for å vise poeng og highscore
 def display_score_and_highscore(): # Viser spillerens poeng og den lagrede highscoren.
     font = pygame.font.Font(None, 40) # gir teksten en font med størrelse 40
-    score_text = font.render(f"Score: {score}", True, (255, 255, 255))  # Oppretter en tekstoverflate som viser spillerens poengsum.
-    # Teksten genereres i hvit farge (RGB: 255, 255, 255), er antialiasert (True for jevnere kanter), og bruker fonten definert tidligere.
-    # Variabelen `score_text` lagrer denne overflaten, som senere kan tegnes på skjermen med `blit`.
+    score_text = font.render(f"Score: {score}", True, (255, 255, 255))
     highscore_text = font.render(f"Highscore: {read_highscore()}", True, (255, 255, 255))  # Oppretter en tekstoverflate som viser spillerens høyeste poengsum (highscore).
     # `read_highscore()` kalles for å hente den lagrede høyeste scoren fra databasen. 
-    # Teksten genereres i hvit farge (RGB: 255, 255, 255), har jevne kanter (antialiasing aktivert med True), og bruker den definerte fonten.
     # Variabelen `highscore_text` lagrer overflaten som senere kan vises på skjermen med `blit`.
     screen.blit(score_text, (10, 10)) # viser poeng på skjermen
     screen.blit(highscore_text, (10, 50)) # viser highscore på skjermen
@@ -129,12 +126,12 @@ def game():  # Funksjonen kjører hovedspillet.
                 pipe["passed"] = False  # Setter passert-status til False.
 
         # Kollisjonsdeteksjon
-        for pipe in pipes:  # Itererer gjennom hvert rør for å sjekke kollisjon.
+        for pipe in pipes:  # det gjentar gjennom hvert rør for å sjekke kollisjon.
             if (bird_position[0] + bird_size > pipe["x"] and bird_position[0] < pipe["x"] + pipe_width and  
                 # Sjekker om fuglen overlapper røret horisontalt.
                 (bird_position[1] < pipe["height"] or bird_position[1] + bird_size > pipe["height"] + pipe_gap)):  
                 # Sjekker om fuglen treffer toppen eller bunnen av røret.
-                running = False  # Stopper spillet hvis det er kollisjon.
+                running = False  # Stopper spillet hvis du kræsjer.
         if bird_position[1] <= 0 or bird_position[1] >= SCREEN_HEIGHT:  
             # Sjekker om fuglen går utenfor skjermens topp eller bunn.
             running = False  # Stopper spillet.
@@ -180,7 +177,7 @@ def game_over_menu():  # Funksjonen viser Game Over-menyen.
     # Plasserer instruksjonen for å avslutte spillet under resten av tekstene.
     pygame.display.flip()  # Oppdaterer skjermen for å vise teksten.
 
-    while True:  # Løkke som venter på spillerens handling.
+    while True:  # Løkke som venter på at spilleren skal gjøre noe.
         for event in pygame.event.get():  # Går gjennom alle hendelser som skjer.
             if event.type == pygame.QUIT:  # Sjekker om spilleren lukker vinduet.
                 pygame.quit()  # Avslutter Pygame.
