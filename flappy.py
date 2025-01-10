@@ -87,7 +87,7 @@ def display_score_and_highscore(): # Viser spillerens poeng og den lagrede highs
     screen.blit(score_text, (10, 10)) # viser poeng på skjermen
     screen.blit(highscore_text, (10, 50)) # viser highscore på skjermen
 
-# Hovedspillfunksjon
+# Hovedspillfunksjonennnnn
 def game():  # Funksjonen kjører hovedspillet.
     global bird_position, bird_velocity, score  # Bruker globale variabler for å holde styr på fuglens posisjon, hastighet og poeng.
 
